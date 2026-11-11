@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For Someone Special 💗</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+ font-family:Poppins,sans-serif;color:white;min-height:100vh;
+ background:radial-gradient(circle at 15% 15%,#704a83,transparent 38%),
+ radial-gradient(circle at 85% 85%,#914c79,transparent 40%),
+ linear-gradient(135deg,#170c29,#35183e,#542447);
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+#stars{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.star{position:absolute;animation:twinkle 2s infinite alternate}
+@keyframes twinkle{to{opacity:.2;transform:scale(.6)}}
+.center{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:18px;position:relative;z-index:2}
+.card{
+ width:100%;max-width:500px;padding:30px 22px;text-align:center;
+ border:1px solid #ffffff35;border-radius:28px;
+ background:#ffffff13;backdrop-filter:blur(18px);
+ box-shadow:0 15px 60px #0005;
+}
+h1{font:600 43px 'Dancing Script',cursive;color:#ffd4ec}
+p{font-size:13px;line-height:1.9;color:#f9e5f4}
+.envelope{font-size:75px;margin-bottom:15px;animation:beat 1.5s infinite}
+@keyframes beat{50%{transform:scale(1.12)}}
+.btn{
+ padding:12px 22px;border:0;border-radius:30px;
+ background:linear-gradient(120deg,#ffdbed,#ffacd8);
+ color:#542447;font-weight:600;margin:7px;
+}
+.btn:hover{transform:scale(1.04)}
+.secondary{background:#ffffff20;color:white;border:1px solid #ffffff40}
+.heart{font-size:55px;animation:beat 1.5s infinite}
+.lyric-box{
+ min-height:115px;display:flex;align-items:center;justify-content:center;
+ padding:16px;margin:20px 0;border-radius:20px;
+ background:#ffffff12;border:1px solid #ffffff25
+}
+#lyric{font:500 27px 'Dancing Script',cursive;color:#ffe0f1}
+.lyric-animate{animation:show .8s ease}
+@keyframes show{from{opacity:0;transform:translateY(15px);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
+#ytWrap{width:100%;max-width:420px;margin:15px auto}
+#ytPlayer{width:100%;min-height:200px;border-radius:15px;overflow:hidden}
+#ytPlayer iframe{width:100%;height:236px;border:0;border-radius:15px}
+.progress{height:4px;background:#ffffff30;border-radius:10px;margin:18px 0;overflow:hidden}
+#progressBar{height:100%;width:0;background:#ffb8dc}
+.floating{position:fixed;bottom:-35px;animation:floatUp 8s linear forwards;pointer-events:none;z-index:1}
+@keyframes floatUp{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+#cover{width:115px;height:115px;object-fit:cover;border-radius:50%;margin:12px auto;border:3px solid #ffffff70}
+.footer{font-size:11px;margin-top:20px;color:#e8c9df}
+
+/* ADMIN */
+#admin{min-height:100vh;padding:18px;position:relative;z-index:3}
+.admin-wrap{max-width:850px;margin:auto}
+.admin-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin:12px 0 20px}
+.admin-head h1{font-size:35px}
+.panel{
+ background:#ffffff12;border:1px solid #ffffff30;
+ border-radius:20px;padding:20px;margin-bottom:15px;
+ backdrop-filter:blur(12px)
+}
+.panel h2{font-size:16px;color:#ffd4ec;margin-bottom:15px}
+.field{margin:13px 0}
+.field label{display:block;font-size:12px;margin-bottom:7px;color:#f8d9eb}
+.field input,.field textarea,.field select{
+ width:100%;padding:12px;border-radius:11px;
+ background:#ffffff16;color:white;border:1px solid #ffffff35;outline:none
+}
+.field input::placeholder,.field textarea::placeholder{color:#e7c7dc}
+.field textarea{min-height:75px;resize:vertical}
+.field select option{color:#222}
+.lyric-row{display:grid;grid-template-columns:75px 1fr 38px;gap:7px;margin:8px 0}
+.lyric-row input{min-width:0;width:100%;padding:10px;border-radius:9px;border:1px solid #ffffff40;background:#ffffff15;color:white}
+.delete{background:#ff577d;color:white;border:0;border-radius:9px;padding:5px 10px}
+.share-box{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.share-box input{flex:1;min-width:180px}
+#notice{font-size:12px;color:#ffe2ef;margin-top:10px}
+@media(max-width:480px){
+ h1{font-size:36px}.card{padding:25px 16px}
+ .lyric-row{grid-template-columns:62px 1fr 34px}
+}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+
+<!-- VISITOR WEBSITE -->
+<section id="visitor" class="center">
+ <div class="card">
+  <div id="welcomePage">
+   <div class="envelope">💌</div>
+   <h1 id="welcomeTitle">Hey, You!</h1><br>
+   <p id="welcomeMessage">Someone made a little magical place just for you... ✨<br><br>Are you ready to open it?</p>
+   <br>
+   <button class="btn" id="welcomeBtn" onclick="openGift()">Open My Heart 💗</button>
+  </div>
+
+  <div id="giftPage" class="hidden">
+   <div class="heart">💗</div>
+   <img id="cover" class="hidden" alt="Special photo">
+   <h1 id="giftTitle">Just For You</h1>
+   <p id="giftMessage">A little song, a little magic, and a little piece of my heart.</p>
+
+   <div class="lyric-box"><div id="lyric">Every moment feels special with you... 💗</div></div>
+
+   <div id="ytWrap">
+    <div id="ytPlayer"></div>
+   </div>
+
+   <button class="btn" id="playBtn" onclick="toggleMusic()">▶ Play Our Song 🎵</button>
+   <p id="musicStatus">A special melody is waiting for you ♡</p>
+   <div class="progress"><div id="progressBar"></div></div>
+   <p id="endMessage">You are my favorite notification. 💕</p>
+  </div>
+  <div class="footer">Made with love, just for you 🎀</div>
+ </div>
+</section>
+
+<!-- ADMIN PANEL -->
+<section id="admin" class="hidden">
+ <div class="admin-wrap">
+  <div class="admin-head">
+   <h1>🎀 Admin Studio</h1>
+   <button class="btn secondary" onclick="previewSite()">Preview ↗</button>
+  </div>
+
+  <div class="panel">
+   <h2>💌 Welcome Page</h2>
+   <div class="field"><label>Welcome Title</label><input id="aWelcomeTitle"></div>
+   <div class="field"><label>Welcome Message</label><textarea id="aWelcomeMessage"></textarea></div>
+   <div class="field"><label>Welcome Button</label><input id="aButton"></div>
+  </div>
+
+  <div class="panel">
+   <h2>💗 Main Website</h2>
+   <div class="field"><label>Main Title</label><input id="aGiftTitle"></div>
+   <div class="field"><label>Main Message</label><textarea id="aGiftMessage"></textarea></div>
+   <div class="field"><label>Final Message</label><input id="aEndMessage"></div>
+   <div class="field"><label>Photo URL (Optional)</label><input id="aPhoto" placeholder="https://..."></div>
+  </div>
+
+  <div class="panel">
+   <h2>🎵 YouTube Music Settings</h2>
+   <div class="field">
+    <label>YouTube Video Link</label>
+    <input id="aYoutube" placeholder="https://youtu.be/VIDEO_ID">
+   </div>
+   <p style="font-size:11px">YouTube player will appear on the visitor page. Press Play to start the song. YouTube playback cannot be completely hidden.</p>
+   <div class="field"><label>Music Button Text</label><input id="aMusicButton"></div>
+  </div>
+
+  <div class="panel">
+   <h2>📝 Lyrics Editor</h2>
+   <p style="font-size:11px;margin-bottom:12px">Set the time in seconds when each line should appear.</p>
+   <div id="lyricsEditor"></div>
+   <button class="btn secondary" onclick="addLyric()">+ Add New Line</button>
+  </div>
+
+  <div class="panel">
+   <h2>🌸 Design Settings</h2>
+   <div class="field">
+    <label>Background Theme</label>
+    <select id="aTheme">
+     <option value="dreamy">Dreamy Purple</option>
+     <option value="pink">Soft Pink</option>
+     <option value="night">Midnight Romance</option>
+     <option value="blue">Dreamy Blue</option>
+    </select>
+   </div>
+   <div class="field">
+    <label>Floating Animation</label>
+    <select id="aAnimation">
+     <option value="on">On</option><option value="off">Off</option>
+    </select>
+   </div>
+  </div>
+
+  <div class="panel">
+   <h2>🚀 Done & Create Share Link</h2>
+   <p>Save your settings and create the visitor link.</p>
+   <button class="btn" onclick="publish()">Done ❤️ Generate Share Link</button>
+   <div id="shareArea" class="hidden">
+    <p style="margin-top:15px">Your Share Link:</p>
+    <div class="share-box">
+     <input id="shareLink" readonly>
+     <button class="btn" onclick="copyLink()">Copy</button>
+    </div>
+    <p id="notice">Share this link with your special person! 💗</p>
+   </div>
+  </div>
+  <div class="footer">Dreamy Romantic Studio · Made with love 🎀</div>
+ </div>
+</section>
+
+<script>
+/* DEFAULT SETTINGS */
+const defaults={
+ welcomeTitle:"Hey, You!",
+ welcomeMessage:"Someone made a little magical place just for you... ✨\n\nAre you ready to open it?",
+ button:"Open My Heart 💗",
+ giftTitle:"Just For You",
+ giftMessage:"A little song, a little magic, and a little piece of my heart.",
+ endMessage:"You are my favorite notification. 💕",
+ photo:"",
+ youtube:"https://youtu.be/uexp-AcNg-c",
+ musicButton:"Play Our Song 🎵",
+ theme:"dreamy",
+ animation:"on",
+ lyrics:[
+  {time:0,text:"Every little moment feels special with you... 💗"},
+  {time:5,text:"You make my ordinary days magical. ✨"},
+  {time:10,text:"Some people are simply unforgettable. 🌸"},
+  {time:15,text:"And you are one of those people. 💕"},
+  {time:20,text:"If I could pause one moment, it would be with you. 🥺"},
+  {time:25,text:"Sending you a little piece of my heart. 💌"},
+  {time:30,text:"You are truly special. 🎀"},
+  {time:35,text:"Never forget how wonderful you are. 💖"}
+ ]
+};
+
+let config=JSON.parse(JSON.stringify(defaults));
+let player=null,playerReady=false,playRequested=false;
+let currentLine=-1,heartTimer=null,lyricTimer=null;
+
+const $=id=>document.getElementById(id);
+
+/* CONFIG ENCODING FOR SHARE LINKS */
+function encodeConfig(obj){
+ const bytes=new TextEncoder().encode(JSON.stringify(obj));
+ let binary="";
+ bytes.forEach(b=>binary+=String.fromCharCode(b));
+ return btoa(binary).replace(/\+/g,"-").replace(/\//g,"_").replace(/=/g,"");
+}
+function decodeConfig(str){
+ const base=str.replace(/-/g,"+").replace(/_/g,"/");
+ const padded=base+"=".repeat((4-base.length%4)%4);
+ const binary=atob(padded);
+ const bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));
+ return JSON.parse(new TextDecoder().decode(bytes));
+}
+function getSharedConfig(){
+ const match=location.hash.match(/gift=([^&]+)/);
+ if(!match)return null;
+ try{
+  const obj=decodeConfig(match[1]);
+  if(obj&&Array.isArray(obj.lyrics))return {...defaults,...obj};
+ }catch(e){}
+ return null;
+}
+
+/* STARS */
+for(let i=0;i<65;i++){
+ const s=document.createElement("span");
+ s.className="star";
+ s.textContent=Math.random()>.5?"✦":"·";
+ s.style.left=Math.random()*100+"%";
+ s.style.top=Math.random()*100+"%";
+ s.style.fontSize=(8+Math.random()*15)+"px";
+ s.style.animationDelay=Math.random()*3+"s";
+ $("stars").appendChild(s);
+}
+
+/* THEME */
+function applyTheme(){
+ const themes={
+  dreamy:["#170c29","#35183e","#542447"],
+  pink:["#421a39","#793c64","#ad557e"],
+  night:["#10152c","#202b4e","#42355e"],
+  blue:["#14253e","#244d69","#554d80"]
+ };
+ const t=themes[config.theme]||themes.dreamy;
+ document.body.style.background=
+ `radial-gradient(circle at 15% 15%,${t[1]},transparent 38%),
+ radial-gradient(circle at 85% 85%,${t[2]},transparent 40%),
+ linear-gradient(135deg,${t[0]},${t[1]},${t[2]})`;
+}
+
+/* YOUTUBE LINK PARSER */
+function getVideoId(url){
+ try{
+  const u=new URL(url);
+  if(u.hostname.includes("youtu.be"))return u.pathname.slice(1).split("/")[0];
+  if(u.hostname.includes("youtube.com")||u.hostname.includes("youtube-nocookie.com")){
+   if(u.pathname==="/watch")return u.searchParams.get("v");
+   const parts=u.pathname.split("/");
+   const i=parts.findIndex(x=>["embed","shorts","live"].includes(x));
+   if(i>=0)return parts[i+1];
+  }
+ }catch(e){}
+ return null;
+}
+
+/* LOAD YOUTUBE API */
+function loadYouTubeAPI(){
+ if(window.YT&&window.YT.Player){createPlayer();return;}
+ if(document.getElementById("yt-api"))return;
+ const tag=document.createElement("script");
+ tag.id="yt-api";
+ tag.src="https://www.youtube.com/iframe_api";
+ document.head.appendChild(tag);
+}
+window.onYouTubeIframeAPIReady=function(){createPlayer()};
+
+function createPlayer(){
+ if(player||!window.YT||!window.YT.Player)return;
+ const videoId=getVideoId(config.youtube);
+ if(!videoId)return;
+ player=new YT.Player("ytPlayer",{
+  width:"420",
+  height:"236",
+  videoId:videoId,
+  playerVars:{playsinline:1,rel:0,controls:1},
+  events:{
+   onReady:function(){
+    playerReady=true;
+    if(playRequested)player.playVideo();
+   },
+   onStateChange:function(event){
+    if(event.data===1){
+     $("playBtn").textContent="❚❚ Pause Our Song";
+     $("musicStatus").textContent="Playing something special for you ♡";
+     startLyrics();
+    }
+    if(event.data===2){
+     $("playBtn").textContent="▶ "+config.musicButton;
+     $("musicStatus").textContent="Music paused ♡";
+     stopLyrics();
+    }
+    if(event.data===0){
+     $("playBtn").textContent="▶ Play Again 💗";
+     $("musicStatus").textContent="That was a little moment of magic ✨";
+     stopLyrics();
+     $("progressBar").style.width="0%";
+     currentLine=-1;
+    }
+   },
+   onError:function(){
+    $("musicStatus").textContent="This video cannot be played here. Try another YouTube link.";
+   }
+  }
+ });
+}
+
+function loadSong(){
+ const id=getVideoId(config.youtube);
+ if(!id){
+  $("musicStatus").textContent="Admin Panel থেকে সঠিক YouTube link দাও।";
+  return;
+ }
+ if(player&&player.loadVideoById){
+  player.loadVideoById(id);
+ }else{
+  loadYouTubeAPI();
+ }
+}
+
+function toggleMusic(){
+ if(!getVideoId(config.youtube)){
+  $("musicStatus").textContent="No valid YouTube link found.";
+  return;
+ }
+ if(!playerReady){
+  playRequested=true;
+  $("musicStatus").textContent="Loading YouTube player... Please wait.";
+  loadYouTubeAPI();
+  return;
+ }
+ const state=player.getPlayerState();
+ if(state===1){
+  player.pauseVideo();
+ }else{
+  playRequested=true;
+  player.playVideo();
+ }
+}
+
+/* LYRICS */
+function showLyric(index){
+ if(index===currentLine)return;
+ currentLine=index;
+ const el=$("lyric");
+ el.classList.remove("lyric-animate");
+ void el.offsetWidth;
+ el.textContent=config.lyrics[index].text;
+ el.classList.add("lyric-animate");
+}
+function updateLyrics(){
+ if(!player||!player.getCurrentTime)return;
+ const time=player.getCurrentTime();
+ let index=-1;
+ config.lyrics.forEach((line,i)=>{
+  if(time>=Number(line.time))index=i;
+ });
+ if(index>=0)showLyric(index);
+ const duration=player.getDuration();
+ if(duration>0)$("progressBar").style.width=(time/duration*100)+"%";
+}
+function startLyrics(){
+ stopLyrics();
+ updateLyrics();
+ lyricTimer=setInterval(updateLyrics,400);
+}
+function stopLyrics(){
+ if(lyricTimer)clearInterval(lyricTimer);
+ lyricTimer=null;
+}
+
+/* FLOATING HEARTS */
+function createHeart(){
+ const h=document.createElement("div");
+ h.className="floating";
+ h.textContent=["💗","💕","✨","🌸","🎀","💖","🦋"][Math.floor(Math.random()*7)];
+ h.style.left=Math.random()*100+"%";
+ h.style.fontSize=(16+Math.random()*17)+"px";
+ h.style.animationDuration=(5+Math.random()*5)+"s";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),10000);
+}
+
+/* VISITOR */
+function renderVisitor(){
+ $("welcomeTitle").textContent=config.welcomeTitle;
+ $("welcomeMessage").innerText=config.welcomeMessage;
+ $("welcomeBtn").textContent=config.button;
+ $("giftTitle").textContent=config.giftTitle;
+ $("giftMessage").textContent=config.giftMessage;
+ $("endMessage").textContent=config.endMessage;
+ $("playBtn").textContent="▶ "+config.musicButton;
+ $("cover").src=config.photo||"";
+ $("cover").classList.toggle("hidden",!config.photo);
+ applyTheme();
+}
+function openGift(){
+ $("welcomePage").classList.add("hidden");
+ $("giftPage").classList.remove("hidden");
+ if(config.animation==="on"&&!heartTimer)heartTimer=setInterval(createHeart,850);
+ loadSong();
+}
+
+/* ADMIN FORM */
+const fieldMap={
+ aWelcomeTitle:"welcomeTitle",
+ aWelcomeMessage:"welcomeMessage",
+ aButton:"button",
+ aGiftTitle:"giftTitle",
+ aGiftMessage:"giftMessage",
+ aEndMessage:"endMessage",
+ aPhoto:"photo",
+ aYoutube:"youtube",
+ aMusicButton:"musicButton",
+ aTheme:"theme",
+ aAnimation:"animation"
+};
+function fillAdmin(){
+ Object.entries(fieldMap).forEach(([id,key])=>$(id).value=config[key]??"");
+ drawLyrics();
+}
+function drawLyrics(){
+ const box=$("lyricsEditor");
+ box.innerHTML="";
+ config.lyrics.forEach((line,i)=>{
+  const row=document.createElement("div");
+  row.className="lyric-row";
+  const time=document.createElement("input");
+  time.type="number";time.min="0";time.step=".1";
+  time.placeholder="Seconds";time.value=line.time;
+  time.addEventListener("input",()=>config.lyrics[i].time=Number(time.value));
+  const text=document.createElement("input");
+  text.placeholder="Write a lyric line...";
+  text.value=line.text;
+  text.addEventListener("input",()=>config.lyrics[i].text=text.value);
+  const del=document.createElement("button");
+  del.className="delete";del.textContent="×";
+  del.onclick=()=>{config.lyrics.splice(i,1);drawLyrics()};
+  row.append(time,text,del);
+  box.appendChild(row);
+ });
+}
+function addLyric(){
+ config.lyrics.push({time:config.lyrics.length*5,text:"New romantic line 💗"});
+ drawLyrics();
+}
+function collectAdmin(){
+ Object.entries(fieldMap).forEach(([id,key])=>config[key]=$(id).value);
+ config.lyrics.sort((a,b)=>Number(a.time)-Number(b.time));
+ return config;
+}
+
+/* PUBLISH AND PREVIEW */
+function makeShareLink(){
+ const base=location.href.split("#")[0].split("?")[0];
+ return base+"#gift="+encodeConfig(config);
+}
+function publish(){
+ collectAdmin();
+ localStorage.setItem("dreamyConfig",JSON.stringify(config));
+ $("shareArea").classList.remove("hidden");
+ $("shareLink").value=makeShareLink();
+ $("notice").textContent="Settings saved! Copy your share link 💗";
+}
+async function copyLink(){
+ try{
+  await navigator.clipboard.writeText($("shareLink").value);
+  $("notice").textContent="Copied! Send this link 💗";
+ }catch(e){
+  $("shareLink").select();
+  document.execCommand("copy");
+  $("notice").textContent="Link selected. Copy it and share 💗";
+ }
+}
+function previewSite(){
+ collectAdmin();
+ localStorage.setItem("dreamyConfig",JSON.stringify(config));
+ location.href=makeShareLink();
+}
+
+/* START ROUTER */
+(function(){
+ const shared=getSharedConfig();
+ const params=new URLSearchParams(location.search);
+ const isAdmin=params.has("admin")||location.hash==="#admin";
+
+ if(shared){
+  config=shared;
+  $("visitor").classList.remove("hidden");
+  $("admin").classList.add("hidden");
+  renderVisitor();
+ }else if(isAdmin){
+  try{
+   const saved=localStorage.getItem("dreamyConfig");
+   if(saved)config={...defaults,...JSON.parse(saved)};
+  }catch(e){}
+  $("visitor").classList.add("hidden");
+  $("admin").classList.remove("hidden");
+  fillAdmin();
+ }else{
+  try{
+   const saved=localStorage.getItem("dreamyConfig");
+   if(saved)config={...defaults,...JSON.parse(saved)};
+  }catch(e){}
+  renderVisitor();
+ }
+})();
+</script>
+</body>
+</html>
